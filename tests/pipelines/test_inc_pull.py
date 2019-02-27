@@ -25,6 +25,7 @@ author: Kenneth Yocum
 import getpass
 from disdat.pipe import PipeTask
 import disdat.api as api
+import pytest
 
 
 TEST_CONTEXT = '_test_context_'
@@ -32,6 +33,7 @@ TEST_NAME    = 'test_bundle'
 REMOTE_URL   = 's3://something'
 
 
+@pytest.mark.skip()
 def test():
     """
 

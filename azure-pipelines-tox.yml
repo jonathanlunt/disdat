@@ -26,7 +26,7 @@ jobs:
   - script: python -m pip install --upgrade pip tox codecov
     displayName: 'Install test tools'
 
-  - script: tox -e $(tox.python)
+  - script: tox -vv -e $(tox.python)
     condition: succeeded()
     displayName: 'Tox: Coverage + Pytest'
 

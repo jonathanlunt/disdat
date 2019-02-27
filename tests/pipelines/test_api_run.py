@@ -19,6 +19,7 @@ import numpy as np
 import os
 from disdat.pipe import PipeTask
 import disdat.api as api
+import pytest
 
 
 TEST_CONTEXT = '_test_context_'
@@ -30,6 +31,7 @@ PIPELINE_CLS = 'pipelines.test_api_run.DataMaker'
 OUTPUT_BUNDLE = 'test_local_run'
 
 
+@pytest.mark.skip()
 def test():
     """ Test the api.run() function.
 
@@ -109,7 +111,7 @@ def test():
     api.delete_context(TEST_CONTEXT)
 
 
-class DataMaker(PipeTask):
+class TestApiRunDataMaker(PipeTask):
     """ Run this by itself.
     Then B requires DataMaker as external, and A. """
 
@@ -128,7 +130,7 @@ class Root(PipeTask):
     int_array = luigi.ListParameter(default=None)
 
     def pipe_requires(self, pipeline_input=None):
-        self.add_dependency('datamaker', DataMaker, {'int_array': self.int_array})
+        self.add_dependency('datamaker', TestApiRunDataMaker, {'int_array': self.int_array})
 
     def pipe_run(self, pipeline_input=None, datamaker=None):
         print ("Root received a datamaker {}".format(datamaker))
