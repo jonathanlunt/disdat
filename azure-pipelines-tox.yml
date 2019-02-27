@@ -1,0 +1,35 @@
+jobs:
+- job: ${{ parameters.name }}
+
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+
+  strategy:
+    matrix:
+      Python27:
+        python.version: '2.7'
+        tox.python: 'py27'
+      Python36:
+        python.version: '3.6'
+        tox.python: 'py36'
+      Python37:
+        python.version: '3.7'
+        tox.python: 'py37'
+
+  steps:
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+      architecture: 'x64'
+
+  - script: python -m pip install --upgrade pip tox codecov
+    displayName: 'Install test tools'
+
+  - script: tox -e $(tox.python)
+    condition: succeeded()
+    displayName: 'Tox: Coverage + Pytest'
+
+#  - script: codecov --required --token=$(codecov.token) --build=$(Build.BuildId) --name="${{ parameters.name }} $(Agent.JobName)"
+#    condition: succeeded()
+#    displayName: 'Codecov report upload'
