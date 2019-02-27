@@ -4,17 +4,17 @@ jobs:
 
 # Run tox tests in on each OS
 
-- template: azure-pipelines-tox.yml
-  parameters:
-    name: Linux
-    vmImage: 'ubuntu-16.04'
+#- template: azure-pipelines-tox.yml
+#  parameters:
+#    name: Linux
+#    vmImage: 'ubuntu-16.04'
 
 - template: azure-pipelines-tox.yml
   parameters:
     name: MacOS
     vmImage: 'macOS-10.13'
 
-- template: azure-pipelines-tox.yml
-  parameters:
-    name: Windows
-    vmImage: 'vs2017-win2016'
+#- template: azure-pipelines-tox.yml
+#  parameters:
+#    name: Windows
+#    vmImage: 'vs2017-win2016'
