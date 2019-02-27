@@ -63,7 +63,7 @@ class ApplyException(Exception):
 
 def error(msg, *args, **kwargs):
     _logger.error(msg, *args, **kwargs)
-    sys.exit(1)
+    raise RuntimeError(msg)
 
 
 def apply_handle_result(apply_result, raise_not_exit=False):
