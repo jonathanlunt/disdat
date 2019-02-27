@@ -2,7 +2,7 @@ import pytest
 from disdat.common import DisdatConfig
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def initialize():
     config = DisdatConfig.instance()
     try:
